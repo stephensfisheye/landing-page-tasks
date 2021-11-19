@@ -5,7 +5,7 @@ use Magento\Framework\View\Element\Template;
 use Stephen\LandingPages\ViewModel\HeroCategories;
 
 /* @var Template $block */
-/* @var HeroCategories $heroProduct */
+/* @var HeroCategories $heroCategories */
 /* @var Escaper $escaper */
 $heroCategories = $block->getData('hero_categories');
 $categories = $heroCategories->getCategories(2, 'position', 'dsc', 3);
