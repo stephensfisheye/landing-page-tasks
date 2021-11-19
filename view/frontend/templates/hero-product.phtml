@@ -1,0 +1,27 @@
+<?php declare(strict_types=1);
+
+use Magento\Framework\View\Element\Template;
+use Stephen\LandingPages\ViewModel\HeroProduct;
+
+/* @var $block Template */
+/* @var $heroProduct HeroProduct */
+/* @var $escaper Escaper */
+$heroProduct = $block->getData('hero_product');
+$product = $heroProduct->getProduct(2);
+$currencySymbol = $heroProduct->getCurrencySymbol();
+$taxRate = $heroProduct->getTaxRate($product);
+$image = $heroProduct->getProductImage($product, 'product_small_image');
+?>
+
+<a href="<?= $escaper->escapeUrl(__($product->getProductURL())) ?>">
+    <div>
+        <p><strong>Name: </strong><?= $escaper->escapeHtml(__($product->getData('name'))) ?></p>
+        <p><strong>SKU: </strong><?= $escaper->escapeHtml(__($product->getData('sku'))) ?></p>
+        <p>
+            <strong>Price: </strong><?= $escaper->escapeHtml(__($currencySymbol)) . $escaper->escapeHtml(__($product->getFinalPrice())) ?>
+            <strong> Tax: </strong> <?= $escaper->escapeHtml(__($taxRate)) ?>%
+        </p>
+        <p><strong>URL: </strong><?= $escaper->escapeHtml(__($product->getProductURL())); ?></p>
+        <img alt="<?= $escaper->escapeHtml(__($product->getData('name'))) ?>" src="<?= $escaper->escapeUrl(__($image)) ?>"/>
+    </div>
+</a>
