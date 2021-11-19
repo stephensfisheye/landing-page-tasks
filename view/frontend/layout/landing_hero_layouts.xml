@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="hero-page"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="landing_hero_categories"/>
+    
+    <body>
+        <move element="landing.hero.categories" destination="additional"/>
+    </body>
+</page>
