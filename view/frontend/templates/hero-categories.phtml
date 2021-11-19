@@ -1,0 +1,21 @@
+<?php declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Stephen\LandingPages\ViewModel\HeroCategories;
+
+/* @var Template $block */
+/* @var HeroCategories $heroProduct */
+/* @var Escaper $escaper */
+$heroCategories = $block->getData('hero_categories');
+$categories = $heroCategories->getCategories(2, 'position', 'dsc', 3);
+?>
+
+<h2>Categories</h2>
+<?php foreach ($categories as $category): ?>
+
+    <h3><a href="<?= $escaper->escapeUrl($category->getUrl()) ?>">
+        <?= $escaper->escapeHtml($category->getData('name')) ?>
+    </a></h3>
+
+<?php endforeach ?>
