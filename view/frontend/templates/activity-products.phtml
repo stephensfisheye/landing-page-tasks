@@ -1,0 +1,32 @@
+<?php declare(strict_types=1);
+
+use Magento\Framework\Escaper;
+use Magento\Framework\View\Element\Template;
+use Stephen\LandingPages\ViewModel\ActivityProducts;
+
+/* @var Template $block */
+/* @var ActivityProducts $activityProducts */
+/* @var Escaper $escaper */
+$activityProducts = $block->getData('activity_products');
+$products = $activityProducts->getProducts(1, 'name', 'dsc', 12);
+?>
+
+<h2>Activity Products</h2>
+
+<?php foreach ($products as $product): ?>
+    <div>
+        <a href="<?= $escaper->escapeUrl($product->getProductUrl()) ?>">
+            <h3><strong><?= /* @noEscape */ __('Name:') ?></strong> <?= $escaper->escapeHtml($product->getData('name')) ?></h3>
+            <p><strong><?= /* @noEscape */ __('SKU:') ?></strong> <?= $escaper->escapeHtml($product->getData('sku')) ?></p>
+            <p><strong><?= /* @noEscape */ __('Price:') ?></strong> <?= $escaper->escapeHtml($activityProducts->getCurrencySymbol($product)) . $escaper->escapeHtml($product->getFinalPrice()) ?></p>
+            <img alt="<?= $escaper->escapeHtmlAttr($product->getData('name')) ?>" src="<?= $escaper->escapeUrl($activityProducts->getImageUrl($product, 'product_small_image')) ?>">
+
+            <?php if (is_array($product->getAttributeText('activity'))): ?>
+                <p><strong><?= /* @noEscape */ __('Activities:') ?></strong> <?= $escaper->escapeHtml(implode(', ', $product->getAttributeText('activity'))) ?></p>
+            <?php else: ?>
+                <p><strong><?= /* @noEscape */ __('Activity:') ?></strong> <?= $escaper->escapeHtml($product->getAttributeText('activity')) ?></p>
+            <?php endif ?>
+        </a>
+    </div>
+    <hr>
+<?php endforeach ?>

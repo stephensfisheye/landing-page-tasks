@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="main">
+            <block name="landing.activity.products"
+                   template="Stephen_LandingPages::activity-products.phtml">
+                <arguments>
+                    <argument name="activity_products" xsi:type="object">Stephen\LandingPages\ViewModel\ActivityProducts</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>
